@@ -8,9 +8,6 @@ const cameraView = document.querySelector("#camera--view"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger");
 
-const save = document.querySelector("#download");
-
-// Access the device camera and stream to cameraView
 function cameraStart() {
     navigator.mediaDevices
         .getUserMedia(constraints)
@@ -30,7 +27,8 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     const data = cameraSensor.toDataURL("image/jpg");
     cameraOutput.src = data;
-    save.href = data;
+    const len = data.length;
+    alert(len);
     cameraOutput.classList.add("taken");
     // track.stop();
 };
