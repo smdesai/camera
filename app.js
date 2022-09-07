@@ -8,7 +8,6 @@ const cameraView = document.querySelector("#camera--view"),
     cameraSensor = document.querySelector("#camera--sensor"),
     cameraTrigger = document.querySelector("#camera--trigger");
 
-const save = document.querySelector("#download");
 
 function cameraStart() {
     navigator.mediaDevices
@@ -22,6 +21,11 @@ function cameraStart() {
         });
 }
 
+function download_img(el) {
+    const data = cameraSensor.toDataURL("image/jpg");
+    el.href = data;
+}
+
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
     cameraSensor.width = cameraView.videoWidth;
@@ -29,7 +33,6 @@ cameraTrigger.onclick = function() {
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
     const data = cameraSensor.toDataURL("image/jpg");
     cameraOutput.src = data;
-    save.href = data;
     cameraOutput.classList.add("taken");
     // track.stop();
 };
