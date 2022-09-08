@@ -21,18 +21,12 @@ function cameraStart() {
         });
 }
 
-function download_img(el) {
-    const data = cameraSensor.toDataURL("image/jpg");
-    el.href = data;
-}
-
 // Take a picture when cameraTrigger is tapped
 cameraTrigger.onclick = function() {
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
-    const data = cameraSensor.toDataURL("image/jpg");
-    cameraOutput.src = data;
+    cameraOutput.src = cameraSensor.toDataURL("image/jpg");
     cameraOutput.classList.add("taken");
     // track.stop();
 };
