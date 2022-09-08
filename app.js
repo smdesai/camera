@@ -26,7 +26,13 @@ cameraTrigger.onclick = function() {
     cameraSensor.width = cameraView.videoWidth;
     cameraSensor.height = cameraView.videoHeight;
     cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
-    cameraOutput.src = cameraSensor.toDataURL("image/jpg");
+    const data = cameraSensor.toDataURL("image/jpg");
+    cameraOutput.src = data;
+    var link = document.createElement("a");
+    link.download = "image.jpg";
+    link.href = data;
+    link.target = "_blank";
+    link.click();
     cameraOutput.classList.add("taken");
     // track.stop();
 };
